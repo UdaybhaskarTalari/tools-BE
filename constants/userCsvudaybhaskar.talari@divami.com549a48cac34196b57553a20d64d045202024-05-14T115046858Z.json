@@ -1,0 +1,112 @@
+[
+  {
+    "Index": 1,
+    "userid": "88F7B33d2bcf9f5",
+    "firstname": "Shelby",
+    "lastname": "Terrell",
+    "sex": "Male",
+    "email": "elijah57@example.net",
+    "phone": "001-084-906-7849x73518",
+    "dob": "10/26/1945",
+    "title": "Games developer"
+  },
+  {
+    "Index": 2,
+    "userid": "f90cD3E76f1A9b9",
+    "firstname": "Phillip",
+    "lastname": "Summers",
+    "sex": "Female",
+    "email": "bethany14@example.com",
+    "phone": "214.112.6044x4913",
+    "dob": "3/24/1910",
+    "title": "Phytotherapist"
+  },
+  {
+    "Index": 3,
+    "userid": "DbeAb8CcdfeFC2c",
+    "firstname": "Kristine",
+    "lastname": "Travis",
+    "sex": "Male",
+    "email": "bthompson@example.com",
+    "phone": "277.609.7938",
+    "dob": "7/2/1992",
+    "title": "Homeopath"
+  },
+  {
+    "Index": 4,
+    "userid": "A31Bee3c201ef58",
+    "firstname": "Yesenia",
+    "lastname": "Martinez",
+    "sex": "Male",
+    "email": "kaitlinkaiser@example.com",
+    "phone": "584.094.6111",
+    "dob": "8/3/2017",
+    "title": "Market researcher"
+  },
+  {
+    "Index": 5,
+    "userid": "1bA7A3dc874da3c",
+    "firstname": "Lori",
+    "lastname": "Todd",
+    "sex": "Male",
+    "email": "buchananmanuel@example.net",
+    "phone": "689-207-3558x7233",
+    "dob": "12/1/1938",
+    "title": "Veterinary surgeon"
+  },
+  {
+    "Index": 6,
+    "userid": "bfDD7CDEF5D865B",
+    "firstname": "Erin",
+    "lastname": "Day",
+    "sex": "Male",
+    "email": "tconner@example.org",
+    "phone": "001-171-649-9856x5553",
+    "dob": "10/28/2015",
+    "title": "Waste management officer"
+  },
+  {
+    "Index": 7,
+    "userid": "bE9EEf34cB72AF7",
+    "firstname": "Katherine",
+    "lastname": "Buck",
+    "sex": "Female",
+    "email": "conniecowan@example.com",
+    "phone": "+1-773-151-6685x49162",
+    "dob": "1/22/1989",
+    "title": "Intelligence analyst"
+  },
+  {
+    "Index": 8,
+    "userid": "2EFC6A4e77FaEaC",
+    "firstname": "Ricardo",
+    "lastname": "Hinton",
+    "sex": "Male",
+    "email": "wyattbishop@example.com",
+    "phone": "001-447-699-7998x88612",
+    "dob": "3/26/1924",
+    "title": "Hydrogeologist"
+  },
+  {
+    "Index": 9,
+    "userid": "baDcC4DeefD8dEB",
+    "firstname": "Dave",
+    "lastname": "Farrell",
+    "sex": "Male",
+    "email": "nmccann@example.net",
+    "phone": "603-428-2429x27392",
+    "dob": "10/6/2018",
+    "title": "Lawyer"
+  },
+  {
+    "Index": 5,
+    "userid": "1bA7A3dc874da3c",
+    "firstname": "Lori",
+    "lastname": "Todd",
+    "sex": "Male",
+    "email": "buchananmanuel@example.net",
+    "phone": "689-207-3558x7233",
+    "dob": "12/1/1938",
+    "title": "Veterinary surgeon"
+  }
+]

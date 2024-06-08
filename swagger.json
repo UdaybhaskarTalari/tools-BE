@@ -1,0 +1,928 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "REST API for Swagger Documentation",
+        "description": "Local development server",
+        "version": "1.0.0"
+    },
+    "components": {
+        "securitySchemes": {
+            "Authorization": {
+                "type": "apiKey",
+                "name": "authorization",
+                "in": "header",
+                "description": "Authentication token"
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "https://utilities.divami.com/be/"
+        }
+    ],
+    "paths": {
+        "/test": {
+            "get": {
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "Test endpoint",
+                "description": "This endpoint is for testing purposes.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            }
+        },
+        "/file": {
+            "post": {
+                "tags": [
+                    "File Upload in File to Db"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To upload the file",
+                "description": "It uploads the file to the server's constants folder.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "The file to be uploaded"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "File submitted successfully",
+                        "filename": "userCsvudaybhaskar.talari@divami.comdb64ff135d12302d066887cd185221192024-05-14T041458530Z.json",
+                        "status": true
+                    }
+                }
+            }
+        },
+        "/databaseconnection": {
+            "post": {
+                "tags": [
+                    "Database Connection"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To connect with the database",
+                "description": "It uploads the file to the server's constants folder.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "tableName": {
+                                        "type": "string",
+                                        "example": "Users"
+                                    },
+                                    "databaseName": {
+                                        "type": "string",
+                                        "example": "olx"
+                                    },
+                                    "dbType": {
+                                        "type": "string",
+                                        "example": "postgres"
+                                    },
+                                    "port": {
+                                        "type": "string",
+                                        "example": "5432"
+                                    },
+                                    "host": {
+                                        "type": "string",
+                                        "example": "localhost"
+                                    },
+                                    "userName": {
+                                        "type": "string",
+                                        "example": "postgres"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "1234"
+                                    },
+                                    "istable": {
+                                        "type": "bool",
+                                        "example": "false"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "initial Database connection established",
+                        "tables": [
+                            "posts",
+                            "Users",
+                            "Categories",
+                            "test",
+                            "lettercasing",
+                            "testfornull",
+                            "testfororderchange"
+                        ],
+                        "status": true,
+                        "code": 200
+                    }
+                }
+            }
+        },
+        "/initialfiletodbcompare": {
+            "post": {
+                "tags": [
+                    "initial data comparison"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To compare the headers",
+                "description": "It comares the header length and order",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "dataDb": {
+                                        "type": "string",
+                                        "example": "dataFromDb6338630ad239713f0ebe6e05be6a90312024-05-03T043509970Z.json"
+                                    },
+                                    "dataFile": {
+                                        "type": "string",
+                                        "example": "userCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "column lengths are matched",
+                        "header1": [
+                            "Index",
+                            "userid",
+                            "firstname",
+                            "lastname",
+                            "sex",
+                            "email",
+                            "phone",
+                            "dob",
+                            "title"
+                        ],
+                        "header2": [
+                            "Index",
+                            "userid",
+                            "firstname",
+                            "lastname",
+                            "sex",
+                            "email",
+                            "phone",
+                            "dob",
+                            "title"
+                        ],
+                        "status": true,
+                        "code": 200
+                    },
+                    "401": {
+                        "message": "unable to read the file",
+                        "status": false,
+                        "error": {
+                            "errno": -4058,
+                            "syscall": "open",
+                            "code": "ENOENT",
+                            "path": "./constants/userCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json"
+                        },
+                        "code": 404
+                    }
+                }
+            }
+        },
+        "/filetodbcompare": {
+            "post": {
+                "tags": [
+                    "filetodbcompare data comparison"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To compare the file data with db data",
+                "description": "It every record",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "condition": {
+                                        "type": "array",
+                                        "example": [
+                                            [],
+                                            []
+                                        ]
+                                    },
+                                    "datadb": {
+                                        "type": "string",
+                                        "example": "userCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json"
+                                    },
+                                    "datafile": {
+                                        "type": "string",
+                                        "example": "userCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "LostData": [
+                            {
+                                "S.No": 1,
+                                "Index": 1,
+                                "userid": "88F7B33d2bcf9f5",
+                                "firstname": "Shelby",
+                                "lastname": "Terrell",
+                                "sex": "Male",
+                                "email": "elijah57@example.net",
+                                "phone": "001-084-906-7849x73518",
+                                "dob": "10/26/1945",
+                                "title": "Games developer"
+                            },
+                            {
+                                "S.No": 2,
+                                "Index": 2,
+                                "userid": "f90cD3E76f1A9b9",
+                                "firstname": "Phillip",
+                                "lastname": "Summers",
+                                "sex": "Female",
+                                "email": "bethany14@example.com",
+                                "phone": "214.112.6044x4913",
+                                "dob": "3/24/1910",
+                                "title": "Phytotherapist"
+                            }
+                        ],
+                        "message": null,
+                        "numberOfRecords": 10,
+                        "status": false,
+                        "misMatchFile": "fileMisseduserCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json",
+                        "code": 200
+                    },
+                    "401": {
+                        "message": "unable to read the file",
+                        "status": false,
+                        "error": {
+                            "errno": -4058,
+                            "syscall": "open",
+                            "code": "ENOENT",
+                            "path": "./constants/userCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json"
+                        },
+                        "code": 404
+                    }
+                }
+            }
+        },
+        "/csvfile": {
+            "post": {
+                "tags": [
+                    "File Upload in File to Db"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To upload the file",
+                "description": "It uploads the file to the server's constants folder.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary",
+                                            "description": "The file to be uploaded"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "File uploaded successfully"
+                    }
+                }
+            }
+        },
+        "/initialcsvcompare": {
+            "post": {
+                "tags": [
+                    "initial csv comparison"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To compare the headers",
+                "description": "It comares the header length and order",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "source": {
+                                        "type": "string",
+                                        "example": "sourceCsvudaybhaskar.talari@divami.comd8f0582444b11da99972d14deb24dc638420531a2ed226f8003409ef4d235f312024-05-03T050819004Z.json"
+                                    },
+                                    "target": {
+                                        "type": "string",
+                                        "example": "targetCsvudaybhaskar.talari@divami.com810cc06ad334e285dfebd35d6af0aa57eab4ecd23ed61b96294d1e09556d039b2024-05-03T050819007Z.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "match",
+                        "header1": [
+                            "Index",
+                            "userid",
+                            "firstname",
+                            "lastname",
+                            "sex",
+                            "email",
+                            "phone",
+                            "dob",
+                            "title"
+                        ],
+                        "header2": [
+                            "Index",
+                            "userid",
+                            "firstname",
+                            "lastname",
+                            "sex",
+                            "email",
+                            "phone",
+                            "dob",
+                            "title"
+                        ],
+                        "status": true,
+                        "code": 200
+                    },
+                    "401": {
+                        "message": "unable to read the file",
+                        "status": false,
+                        "error": {
+                            "errno": -4058,
+                            "syscall": "open",
+                            "code": "ENOENT",
+                            "path": "./constants/userCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json"
+                        },
+                        "code": 404
+                    }
+                }
+            }
+        },
+        "/csvcompare": {
+            "post": {
+                "tags": [
+                    "csv to csv data comparison"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To compare the files data",
+                "description": "It every record",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "condition": {
+                                        "type": "array",
+                                        "example": [
+                                            [],
+                                            []
+                                        ]
+                                    },
+                                    "source": {
+                                        "type": "string",
+                                        "example": "sourceCsvudaybhaskar.talari@divami.comd8f0582444b11da99972d14deb24dc638420531a2ed226f8003409ef4d235f312024-05-03T050819004Z.json"
+                                    },
+                                    "target": {
+                                        "type": "string",
+                                        "example": "targetCsvudaybhaskar.talari@divami.com810cc06ad334e285dfebd35d6af0aa57eab4ecd23ed61b96294d1e09556d039b2024-05-03T050819007Z.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "LostData": [
+                            {
+                                "S.No": 1,
+                                "Index": 1,
+                                "userid": "88F7B33d2bcf9f5",
+                                "firstname": "Shelby",
+                                "lastname": "Terrell",
+                                "sex": "Male",
+                                "email": "elijah57@example.net",
+                                "phone": "001-084-906-7849x73518",
+                                "dob": "10/26/1945",
+                                "title": "Games developer"
+                            },
+                            {
+                                "S.No": 2,
+                                "Index": 2,
+                                "userid": "f90cD3E76f1A9b9",
+                                "firstname": "Phillip",
+                                "lastname": "Summers",
+                                "sex": "Female",
+                                "email": "bethany14@example.com",
+                                "phone": "214.112.6044x4913",
+                                "dob": "3/24/1910",
+                                "title": "Phytotherapist"
+                            }
+                        ],
+                        "message": null,
+                        "numberOfRecords": 10,
+                        "status": false,
+                        "misMatchFile": "fileMisseduserCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json",
+                        "code": 200
+                    },
+                    "401": {
+                        "message": "unable to read the file",
+                        "status": false,
+                        "error": {
+                            "errno": -4058,
+                            "syscall": "open",
+                            "code": "ENOENT",
+                            "path": "./constants/userCsvudaybhaskar.talari@divami.comb2a3100ebcec0ca316f55777e56284052024-05-03T043435463Z.json"
+                        },
+                        "code": 404
+                    }
+                }
+            }
+        },
+        "/connect": {
+            "post": {
+                "tags": [
+                    "establishing the dn connections"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To connect to the db",
+                "description": "establishing the connection with the db's",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "source": {
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "host": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "databaseName": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "userName": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "port": {
+                                                "type": "string",
+                                                "example": ""
+                                            }
+                                        }
+                                    },
+                                    "target": {
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "host": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "databaseName": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "userName": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": ""
+                                            },
+                                            "port": {
+                                                "type": "string",
+                                                "example": ""
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "Database connected successfully",
+                        "sourceSchema": {},
+                        "targetSchema": {},
+                        "status": "true"
+                    },
+                    "400": {
+                        "message": "Invalid credentials for source",
+                        "status": "false",
+                        "code": 400
+                    }
+                }
+            }
+        },
+        "/comparedata": {
+            "post": {
+                "tags": [
+                    "comparing the schema"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To comare the schema",
+                "description": "comparig the schema queries",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "caseSensitive": {
+                                        "type": "bool",
+                                        "example": true
+                                    },
+                                    "sourceDBQuery": {
+                                        "type": "string",
+                                        "example": "select * from test;"
+                                    },
+                                    "sourceDBType": {
+                                        "type": "string",
+                                        "example": "postgres"
+                                    },
+                                    "swap": {
+                                        "type": "string",
+                                        "example": "true"
+                                    },
+                                    "targetDBQuery": {
+                                        "type": "string",
+                                        "example": "select * from test;"
+                                    },
+                                    "targetDBType": {
+                                        "type": "string",
+                                        "example": "postgres"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": null,
+                        "mismatches": [
+                            {
+                                "Serial No": 10,
+                                "Index": 5,
+                                "userid": "1bA7A3dc874da3c",
+                                "firstname": "Lori",
+                                "lastname": "Todd",
+                                "sex": "Male",
+                                "email": "buchananmanuel@example.net",
+                                "phone": "689-207-3558x7233",
+                                "dob": "12/1/1938",
+                                "title": "Veterinary surgeon"
+                            }
+                        ],
+                        "misMatchFile": "csvMissedsourceCsvudaybhaskar.talari@divami.com8cc395c94847957f2cef16ab6ca3f7c995ca67c0231d38203db8ab087c0b11082024-05-14T041745018Z.json",
+                        "numberOfRecords": 1,
+                        "status": false,
+                        "code": 200
+                    }
+                }
+            }
+        },
+        "/setdata": {
+            "post": {
+                "tags": [
+                    "setting the saved session"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To set the user credentials",
+                "description": "set up the backed user data",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "databaseName": {
+                                        "type": "string",
+                                        "example": "qa_db"
+                                    },
+                                    "dbType": {
+                                        "type": "string",
+                                        "example": "postgres"
+                                    },
+                                    "file": {
+                                        "type": "string",
+                                        "example": "utilities.json"
+                                    },
+                                    "host": {
+                                        "type": "string",
+                                        "example": "utilities.divami.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "****"
+                                    },
+                                    "port": {
+                                        "type": "string",
+                                        "example": "5432"
+                                    },
+                                    "tableName": {
+                                        "type": "string",
+                                        "example": "testfornull"
+                                    },
+                                    "userName": {
+                                        "type": "string",
+                                        "example": "qa_db"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "session stored",
+                        "status": "true"
+                    },
+                    "400": {
+                        "message": "session already exists",
+                        "status": "false"
+                    }
+                }
+            }
+        },
+        "/getpastdata": {
+            "post": {
+                "tags": [
+                    "getting all the saved session"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To get the user credentials",
+                "description": "getting up the backed user data",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "dbType": {
+                                        "type": "string",
+                                        "example": "postgres"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "sending past session data",
+                        "files": [
+                            "pg_network_2024-05-09_9_39_48",
+                            "postgres_db_2024-05-09_17_59_57"
+                        ],
+                        "status": true
+                    },
+                    "400": {
+                        "description": "no data exists"
+                    }
+                }
+            }
+        },
+        "/getdata": {
+            "post": {
+                "tags": [
+                    "getting the required session"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To get the user credentials",
+                "description": "getting up the required user data",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "example": "utility.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "sending session data",
+                        "data": {
+                            "host": "utilities.divami.com",
+                            "databaseName": "qa_db",
+                            "userName": "qa_db",
+                            "password": "qa_db",
+                            "dbType": "postgres",
+                            "tableName": "",
+                            "port": "5432",
+                            "istable": true,
+                            "file": "pg_network_2024-05-09_9_39_48"
+                        },
+                        "status": true
+                    },
+                    "400": {
+                        "description": "no data exists"
+                    }
+                }
+            }
+        },
+        "/deletesession": {
+            "post": {
+                "tags": [
+                    "deleted the required session"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To delete the user credentials",
+                "description": "deleted the required user data",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "example": "utility.json"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "message": "sending past session data",
+                        "files": [
+                            "postgres_db_2024-05-09_17_59_57",
+                            "new_2024-05-14_4_24_1"
+                        ],
+                        "status": true
+                    },
+                    "400": {
+                        "description": "no data exists"
+                    }
+                }
+            }
+        },
+        "/downloadfile": {
+            "post": {
+                "tags": [
+                    "download the required file"
+                ],
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ],
+                "summary": "To download the mismatch data",
+                "description": "To download the mismatch data",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "type": "string",
+                                        "example": "csvMissedsourceCsvudaybhaskar.talari@divami.comf814fa4639171a8fe360e78950f2726ffc977729a8d0a39c56bc516b6fd3fd4b2024-05-04T121629206Z.json"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "file"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "downloaded successfully"
+                    },
+                    "400": {
+                        "description": "no data exists"
+                    }
+                }
+            }
+        }
+    }
+}

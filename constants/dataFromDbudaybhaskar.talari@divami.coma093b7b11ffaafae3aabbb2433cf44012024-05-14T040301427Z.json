@@ -1,0 +1,37 @@
+[
+  {
+    "id": 12,
+    "username": "minato",
+    "password": "Minato@1234"
+  },
+  {
+    "id": 13,
+    "username": "hwiuqhi",
+    "password": "Uday@1234"
+  },
+  {
+    "id": 15,
+    "username": "Vaishnavi",
+    "password": "Vaishnavi"
+  },
+  {
+    "id": 17,
+    "username": "Vaishu",
+    "password": "Vaishnavi"
+  },
+  {
+    "id": 18,
+    "username": "Tanmayi",
+    "password": "Vaishnavi"
+  },
+  {
+    "id": 19,
+    "username": "Thanu",
+    "password": "Vaishnavi"
+  },
+  {
+    "id": 20,
+    "username": "Sravya",
+    "password": "Sravya@111"
+  }
+]

@@ -1,0 +1,13 @@
+import express from "express";
+import { compareFiletodb } from "./controller.js";
+import multer from "multer";
+import { dbConnection } from "./controller.js";
+import { getHeadersForFileDb } from "./controller.js";
+import { fileToJson } from "./services/userInputFileToJson.js";
+const fileToDbRoute = express.Router();
+const upload = multer({ dest: "uploads/" });
+fileToDbRoute.post("/file", upload.single("file"), fileToJson);
+fileToDbRoute.post("/initialfiletodbcompare", getHeadersForFileDb);
+fileToDbRoute.post("/databaseconnection", dbConnection);
+fileToDbRoute.post("/filetodbcompare", compareFiletodb);
+export default fileToDbRoute;

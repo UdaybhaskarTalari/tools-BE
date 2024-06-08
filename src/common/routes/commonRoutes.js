@@ -1,0 +1,13 @@
+import express from "express";
+import { setCredentials } from "../services/setCredentials.js";
+import { sendingReqCredentialsData } from "../services/sendingReqCredentialsData.js";
+import { sendingPastCredentials } from "../services/sendingPastCredentials.js";
+import { deleteCredentials } from "../services/deleteCredentials.js";
+import { downloadFile } from "../services/exportFile.js";
+const commonRoute = express.Router();
+commonRoute.post("/setdata", setCredentials);
+commonRoute.post("/getdata", sendingReqCredentialsData);
+commonRoute.post("/getpastdata", sendingPastCredentials);
+commonRoute.delete("/deletesession", deleteCredentials);
+commonRoute.post("/downloadfile", downloadFile);
+export default commonRoute;

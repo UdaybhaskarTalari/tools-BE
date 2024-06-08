@@ -1,0 +1,11 @@
+import express from "express";
+import { compareCsvFiles } from "./controller.js";
+import { csvFileGenerations } from "./controller.js";
+import multer from "multer";
+import { getCsvHeaders } from "./controller.js";
+const csvRoute = express.Router();
+const upload = multer({ dest: "uploads/" });
+csvRoute.post("/csvfile", upload.array("file"), csvFileGenerations);
+csvRoute.post("/initialcsvcompare", getCsvHeaders);
+csvRoute.post("/csvcompare", compareCsvFiles);
+export default csvRoute;
